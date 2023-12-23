@@ -1,46 +1,371 @@
 <!DOCTYPE html>
-<html lang='ja'>
+<html lang="ja">
 <head>
-  <meta charset='utf-8'>
-  <title>WEB実験</title>
-  <meta property="og:title" content="たいとる">
-  <meta property="og:description" content="せつめいせつめい">
-  <meta name="theme-color" content="#ECECF7">
-  <meta name="msapplication-TileColor" content="#ECECF7">
-  <link rel="icon" type="image/png" xhref="icon.png">
-  <link rel="apple-touch-icon" xhref="icon.png">
-  <meta name="msapplication-square310x310logo" xcontent="icon.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta property="og:image" content="https://yourdomain/ogp.jpg">
-  <meta name="twitter:image" content="https://yourdomain/ogp.jpg">
+	<meta charset="utf-8">	
+	<title>ようこそ赤石同好会へ</title>
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+	<script type="text/javascript">
+		function jump(location) {
+			if (location == "return") {window.location = location.href;} else {
+				window.location = location;
+			} 
+			
+		}
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="format-detection" content="telephone=no">
+		function scrolls(type) {
+			var element = document.getElementById('scroll');
+			if (type == "left") {
+				element.scrollBy(-100,0);
+			} else {
+				element.scrollBy(100,0);
+			}
+		}
 
-  <link rel="stylesheet" href="index.css">
+		function w_close() {
+			if (!alert('じゃあ帰れ')) {
+				w_close();
+			}
+		}		
+
+		function anime(className, e) {
+			var element = e.currentTarget;
+			if (className == "pouse") {
+				element.className = "start";
+			} else {
+				element.className = "pouse";
+			}
+			auto_stop(element);
+		}
+
+		function auto_stop(element) {
+			document.getElementById('scroll').addEventListener('scroll', () => {
+				element.className = "pouse";
+			});
+		}
+	</script>
+<link rel="stylesheet" type="text/css">
+<style type="text/css">
+	html {
+		overflow-wrap: break-word;
+		overflow-x: hidden;
+	}
+
+	div {
+		padding: 0;
+		margin: 0;
+		overflow-wrap: break-word;
+	}
+
+	#header {
+		width: 100vw;
+		height: 80px;
+		background: #000;
+		border: solid 1px #000;
+		display: inline-block;
+		position: sticky;
+		top: 0px;
+		left: 0px;
+		z-index: 999;
+	}
+
+	#header div,a {
+		float: left;
+		color: #fff;
+		line-height: 80px;
+		width: auto;
+		padding-left: 10px;
+		padding-right: 10px;
+		/*border: solid 1px #fff;*/
+	}
+
+	#intro {
+		width: 200px;
+		color: #fff;
+	}
+
+	.name {
+		width: 200px;
+		text-align: center;
+	}
+
+	#name_jp {
+		height: 60px;
+		font-size: 30px;
+		line-height: 60px !important;
+		float: none !important;
+	}
+
+	#name_en {
+		height: 20px;
+		line-height: 20px !important;
+		font-size: 5px;
+		float: none !important;
+	}
+
+	span.red {
+		color: red;
+	}
+
+	#content {
+		width: 100vw;
+		color: #000;
+		/*position: absolute;
+		left: 0px;
+		top: 80px;*/
+	}
+
+	#broad {
+		font-size: 20px;
+		width: 100vw;
+		line-height: 40px;
+		min-height: 40px;
+		text-align: center;
+	}
+
+	#scroll {
+		width: 60vw;
+		height: 400px;
+		border: solid 1px #000;
+		box-sizing: border-box;
+		position: relative;
+		left: 20vw;
+		top: -40px;
+		overflow-x: scroll;
+		overflow-y: hidden;
+		white-space: nowrap;
+		user-select: none;
+		scroll-snap-type: x mandatory;
+	}
+
+	#scroll div {
+		width: 60vw;
+		height: 400px;
+		text-align: center;
+		position: absolute;
+		scroll-snap-align: start;
+	}
+
+	#scroll div img {
+		width: 20vw;
+		position: absolute;
+		left: 20vw;
+		top: 0px;
+	}
+
+	#scroll div h2 {
+		width: 60vw;
+		position: absolute;
+		left: 0px;
+		text-align: center;
+	}
+
+	ion-icon {
+		width: 50px;
+		height: 50px;
+		position: relative;
+		top: 175px;
+		border: solid 1px #000;
+	}
+
+	ion-icon:hover {
+		transform: scale(0.9);
+	}
+
+	#cube {
+		width: initial;
+		height: initial;
+		width: 100px !important;
+		height: 100px !important;
+		background: #000;
+		transform-style: preserve-3d;
+		perspective: 10000px;
+		position: relative;
+		left: calc(30vw - 50px);
+		top: 150px;
+		/*transform: rotateX(-30deg) rotateY(20deg);*/
+		animation-name: rotate;
+		animation-iteration-count: infinite;
+		animation-duration: 3s;
+		animation-timing-function: linear;
+	}
+
+	#cube.pouse {
+		animation-play-state: paused;
+	}
+
+	@keyframes rotate {
+		0% {
+			transform: rotateX(-30deg) rotateY(20deg);
+		}
+
+		100% {
+			transform: rotateX(-30deg) rotateY(380deg);
+		}
+	}	
+
+	#cube div {
+		width: 100px;
+		height: 100px;
+		background: radial-gradient(#333, #f00);
+		float: none;
+		position: absolute;
+		font-size: 50px;
+		color: #fff;
+		line-height: 100px;
+	}
+
+	#rule {
+		width: 80vw;
+		position: relative;
+		left: 10vw;
+	}
+
+	h2,h3,h4 {
+		display: inline;
+	}
+
+	details {
+		
+	}
+
+	summary {
+		font-size: 20px;
+		font-family: 'HGP行書体', curvise;
+	}
+
+	details p {
+		position: relative;
+		left: 20px;
+	}
+
+	.flaot_clear{
+		clear: both;
+	}
+
+	.blank {
+		width: 100vw;
+		height: 30px;
+	}
+</style>
 </head>
 <body>
-  <div class=header>
-    <h1>私のホームページ</h1>
-    <div>きのこ派を許さない</div>
-  </div>
-  <div class=main>
-    <div>
-      <h2>クラブ</h2>
-      <div>
-        水泳部
-      </div>
-    </div>
+	<div id="header">
+		<div id="intro" onclick="jump('index.html')">
+			<div id="name_jp" class="name"><span class="red">赤</span>石同好会</div>
+			<div id="name_en" class="name">Rikuryo Red Stone Club</div>
+		</div>
 
-    <div>
-      <h2>趣味</h2>
-      <div>
-        YouTube
-      </div>
-    </div>
-  </div>
-  <div class=footer>
-    20YY/MM/DD
-  </div>
+		<div style="position: relative; left: calc(80vw - 200px); width: 100px; height: 80px; font-size: 10px; line-height: 80px; text-align: center;" onclick="w_close()">怪しいなと思ったら</div>
+
+		<div id="menu">
+			<a href="#rule" style="width: auto;">会則</a>
+			<a href="#member">現会員</a>
+		</div>
+	</div>
+
+	<div id="content">
+		<div id="broad">
+			我々赤石同行会は、赤石を愛し、分化に親しみ、双六を嗜み、芸術を慈しみ、弾幕を避けることに日々励んでいます。<br>
+		</div>
+
+		<ion-icon style="left: calc(20vw - 100px);" name="caret-back-outline" onclick="scrolls('left')"></ion-icon>	
+		<ion-icon style="left: calc(80vw - 10px);" name="caret-forward-outline" onclick="scrolls('right')"></ion-icon>
+		<div id="scroll">
+			<div onclick='jump("https://twitter.com/RRSC2011")' style="left: 0vw;">
+				<img src="twitter.jpg" style="top: 30px;">
+				<h2 style="bottom: 0px;">twitter開設しました。</h2>
+			</div>
+
+			<div style="background-image: url(red_stone.png); background-size: 50%; background-color: rgba(255, 255, 255,0.8); opacity: 1; left: 60vw;">
+				<h2 style="color: red;">新規会員募集中！！</h2><br>
+			</div>	
+
+			<div style="left: 120vw;">
+				<div id="cube" class="pouse" onclick="anime(this.className, event)">
+					<div style="transform: rotateY(-90deg) translateZ(50px);">あ</div>
+					<div style="transform: rotateY(90deg) translateZ(50px);">い</div>
+					<div style="transform: rotateY(180deg) translateZ(50px);">か</div>
+					<div style="transform: rotateY(0deg) translateZ(50px);">し</div>
+					<div style="transform: rotateX(90deg) translateZ(50px);"></div>
+				</div>
+			</div>				
+		</div>
+
+		<div id="rule">
+			<h2>赤石同好会会則</h2><br>
+			<div style="position: relative; left: 20px;">
+				<h3>序</h3><br>
+				<div style="position: relative; left: 20px;">	
+					<span>赤</span>石同好会は赤石同好会名簿に記される者を会員とし、数理解析回路研究会及び競馬同好会の上部組織であるものとする。<br>
+					<span>本</span>会則は、赤石讃歌の本会会長による解釈に基づき作成される。本会会員は其の命ある限り是をいかなる原理原則より重んじ、遵守せねばならない。尚、是に違反するものは杖刑に処される。<br>
+					<br>
+				</div>
+				<h4>一</h4>．赤石は世界を統べ、全物質、全意識並びに赤石同好会の象徴であるから、赤石同好会会員は是を尊重し、回路造成を精神の栄養にすること。<br>
+				<h4>一</h4>．神聖なる赤石に対しコマンドは実に取るに足らず、塵の如く扱うべきであり、是を使用することは本会会員にとり、最も恥ずべき悪徳であると心に留めること。<br>
+				<br>
+				＜<span class='red'>強制退会</span>＞
+				本会会長が赤石同好会会員たるに相応の思慮分別を持ち合わせないと判断した会員は、即座に不可逆的かつ永久的な強制退会処分を受けます。
+			</div>
+		</div>
+
+		<div class="blank"></div>
+
+		<div id="member" style="width: 80vw; position: relative; left: 10vw">
+			<h2>現会員</h2>
+			<div style="position: relative; left: 20px">
+				<details>
+					<summary>あおい</summary>
+					<p>本会創始者の一人。２０２３年現在に於いて実質的な代表者である。当人に気に入られた会員は、晴れて永世名誉会員に昇格させられる。</p>
+				</details>	
+
+				<details>
+					<summary>山本大樹</summary>
+					<p>本会幻の第一期会員</p>
+				</details>
+
+				<details>
+					<summary>わたる</summary>
+					<p>本会創始に関わる第一人者であるが、現在は活動に消極的である。</p>
+				</details>	
+
+				<details>
+					<summary>ゆうた</summary>
+					<p>うまむすこ</p>
+				</details>
+
+				<details>
+					<summary>大平正敏</summary>
+					<p>本会の名簿には記載されていないが、本会の資金援助等を行い、陰で支えている元会員。日中の外交関係を繋げる役目もはたしている。</p>
+				</details>	
+
+				<details>
+					<summary>miyasaka TP</summary>
+					<p>後期入会組のいわゆる外様であるが、非常に活発的である。てっぺい</p>
+				</details>		
+
+				<details>
+					<summary>しんたろう</summary>
+					<p>初期メンバーのF本くんのほう。後述するシンタローと誤認しやすく、めんどくさい。</p>
+				</details>	
+
+				<details>
+					<summary>シンタロー</summary>
+					<p>映画とSCPが大好きなてっぺいの刺客。</p>
+				</details>	
+
+				<details>
+					<summary>り</summary>
+					<p>ラー油ごはんが好きで現在長期療養中である。</p>
+				</details>	
+
+				<details>
+					<summary>その他諸々</summary>
+					<p>この文章を書くのが面倒臭くなった有象無象</p>
+				</details>		
+			</div>
+
+		</div>	
+	</div>
 </body>
 </html>
