@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>template</title>
+    <link rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
+            function submit() {
+                var text = document.getElementById("text");
+                var content = document.getElementById("content");
+                var img = document.getElementById("img");
+                if (text.value == "") {
+                    alert("伝言内容を入力してください");
+                } else {
+                    content.innerHTML = text.value;
+                    //alert("送信されました");
+                    img.src = "https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=" + text.value;
+                    text.value = "";
+                }
+            }
+            
+            const button = document.getElementById("button");
+            button.addEventListener("click", submit);
+        });
+    </script>
+    <style type="text/css"></style>
+</head>
+<body>
+    伝言板<br>
+    <p id="content">伝言内容</p>
+    <img id="img" src="" alt="ﾅﾆﾓﾅｲﾖ"><br>
+    <input id="text" type="text" placeholder="入力してください">
+    <input id="button" type="button" value="送信" onclick="">
+</body>
+</html>
